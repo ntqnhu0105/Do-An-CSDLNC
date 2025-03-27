@@ -1,0 +1,21 @@
+﻿@model QLVXBXMD.Models.System.NhaXe
+
+@{
+    ViewData["Title"] = "Xóa Nhà Xe";
+}
+
+<h2>Bạn có chắc chắn muốn xóa Nhà Xe?</h2>
+
+<div>
+    <h4>@Model.TenNhaXe</h4>
+    <hr />
+    <p><strong>Địa chỉ:</strong> @Model.DiaChi</p>
+    <p><strong>Email:</strong> @Model.Email</p>
+    <p><strong>Số điện thoại:</strong> @Model.SDT</p>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="MaNhaXe" />
+        <button type="submit" class="btn btn-danger">Xóa</button>
+        <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+    </form>
+</div>

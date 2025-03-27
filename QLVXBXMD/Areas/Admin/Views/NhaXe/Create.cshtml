@@ -1,0 +1,38 @@
+﻿@model QLVXBXMD.Models.System.NhaXe
+
+@{
+    ViewData["Title"] = "Thêm Nhà Xe";
+}
+<form asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="text-danger">
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <p>@error.ErrorMessage</p>
+            }
+        </div>
+    }
+    <div>
+        <label asp-for="TenNhaXe"></label>
+        <input asp-for="TenNhaXe" class="form-control" />
+        <span asp-validation-for="TenNhaXe" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="DiaChi"></label>
+        <input asp-for="DiaChi" class="form-control" />
+        <span asp-validation-for="DiaChi" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="SDT"></label>
+        <input asp-for="SDT" class="form-control" />
+        <span asp-validation-for="SDT" class="text-danger"></span>
+    </div>
+    <button type="submit">Tạo mới</button>
+</form>

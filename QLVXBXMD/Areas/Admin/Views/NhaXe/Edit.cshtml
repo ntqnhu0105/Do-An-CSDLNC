@@ -1,0 +1,29 @@
+﻿@model QLVXBXMD.Models.System.NhaXe
+
+@{
+    ViewData["Title"] = "Chỉnh sửa Nhà Xe";
+}
+
+<h2>Chỉnh sửa Nhà Xe</h2>
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="MaNhaXe" />
+    <div class="form-group">
+        <label asp-for="TenNhaXe" class="control-label"></label>
+        <input asp-for="TenNhaXe" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="DiaChi" class="control-label"></label>
+        <input asp-for="DiaChi" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Email" class="control-label"></label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="SDT" class="control-label"></label>
+        <input asp-for="SDT" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-warning">Lưu</button>
+    <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+</form>

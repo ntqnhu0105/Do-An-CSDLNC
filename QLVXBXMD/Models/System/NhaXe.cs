@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace QLVXBXMD.Models.System
 {
     public class NhaXe
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string MaNhaXe { get; set; }
 
         [Required]
