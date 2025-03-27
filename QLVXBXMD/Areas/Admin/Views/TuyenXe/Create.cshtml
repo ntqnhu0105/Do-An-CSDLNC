@@ -1,0 +1,65 @@
+﻿@model QLVXBXMD.Models.System.TuyenXe
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Thêm Tuyến Xe</h2>
+
+@if (!ViewData.ModelState.IsValid)
+{
+        <div class="alert alert-danger">
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <p>@error.ErrorMessage</p>
+        }
+        </div>
+}
+
+<form asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label asp-for="DiemDi"></label>
+        <input asp-for="DiemDi" class="form-control" />
+        <span asp-validation-for="DiemDi" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DiemDen"></label>
+        <input asp-for="DiemDen" class="form-control" />
+        <span asp-validation-for="DiemDen" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="KhoangCach"></label>
+        <input asp-for="KhoangCach" class="form-control" type="number" step="0.1" />
+        <span asp-validation-for="KhoangCach" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ThoiGianDuKien"></label>
+        <input asp-for="ThoiGianDuKien" class="form-control" type="time" step="1" />
+        <span asp-validation-for="ThoiGianDuKien" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MoTa"></label>
+        <textarea asp-for="MoTa" class="form-control"></textarea>
+        <span asp-validation-for="MoTa" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="GiaThamKhao"></label>
+        <input asp-for="GiaThamKhao" class="form-control" type="number" step="1000" />
+        <span asp-validation-for="GiaThamKhao" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Thêm</button>
+    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+</form>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

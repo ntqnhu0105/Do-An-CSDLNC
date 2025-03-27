@@ -31,6 +31,7 @@
                 <td>@item.Email</td>
                 <td>@item.SDT</td>
                 <td>
+                    <a asp-action="Details" asp-route-id="@item.MaNhaXe" class="btn btn-info">Chi tiết</a>
                     <a asp-action="Edit" asp-route-id="@item.MaNhaXe" class="btn btn-warning">Sửa</a>
                     <a asp-action="Delete" asp-route-id="@item.MaNhaXe" class="btn btn-danger">Xóa</a>
                 </td>

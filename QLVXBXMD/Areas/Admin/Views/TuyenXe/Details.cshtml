@@ -1,0 +1,39 @@
+﻿@model QLVXBXMD.Models.System.TuyenXe
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Chi tiết Tuyến Xe</h2>
+
+<div>
+    <h4>Thông tin Tuyến Xe</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Mã Tuyến</dt>
+        <dd class="col-sm-10">@Model.MaTuyen</dd>
+
+        <dt class="col-sm-2">Điểm Đi</dt>
+        <dd class="col-sm-10">@Model.DiemDi</dd>
+
+        <dt class="col-sm-2">Điểm Đến</dt>
+        <dd class="col-sm-10">@Model.DiemDen</dd>
+
+        <dt class="col-sm-2">Khoảng Cách</dt>
+        <dd class="col-sm-10">@Model.KhoangCach.ToString("0.##") km</dd>
+
+        <dt class="col-sm-2">Thời Gian Dự Kiến</dt>
+        <dd class="col-sm-10">@Model.ThoiGianDuKien</dd>
+
+        <dt class="col-sm-2">Mô Tả</dt>
+        <dd class="col-sm-10">@Model.MoTa</dd>
+
+        <dt class="col-sm-2">Giá Tham Khảo</dt>
+        <dd class="col-sm-10">@String.Format("{0:N0} VND", Model.GiaThamKhao)</dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.MaTuyen" class="btn btn-warning">Sửa</a>
+    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+</div>
