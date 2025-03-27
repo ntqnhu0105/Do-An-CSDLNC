@@ -23,6 +23,23 @@ namespace QLVXBXMD.Areas.Admin.Controllers
             return View(await _context.NhaXes.ToListAsync());
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Details(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var nhaXe = await _context.NhaXes
+                .FirstOrDefaultAsync(nx => nx.MaNhaXe == id);
+            if (nhaXe == null)
+            {
+                return NotFound();
+            }
+
+            return View(nhaXe);
+        }
         // GET: Admin/NhaXes/Create
         public IActionResult Create()
         {

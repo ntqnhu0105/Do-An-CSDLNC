@@ -27,6 +27,25 @@ namespace QLVXBXMD.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> Details(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var nhanVien = await _context.NhanViens
+                .Include(nv => nv.NhaXe)
+                .FirstOrDefaultAsync(nv => nv.MaNV == id);
+            if (nhanVien == null)
+            {
+                return NotFound();
+            }
+
+            return View(nhanVien);
+        }
+
+        [HttpGet]
         public IActionResult Create()
         {
             ViewBag.NhaXes = _context.NhaXes

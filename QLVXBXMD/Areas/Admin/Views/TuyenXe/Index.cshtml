@@ -1,0 +1,43 @@
+﻿@model IEnumerable<QLVXBXMD.Models.System.TuyenXe>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Danh sách Tuyến Xe</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Thêm Tuyến Xe</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Mã Tuyến</th>
+            <th>Điểm Đi</th>
+            <th>Điểm Đến</th>
+            <th>Khoảng Cách (km)</th>
+            <th>Thời Gian Dự Kiến</th>
+            <th>Giá Tham Khảo</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MaTuyen</td>
+                <td>@item.DiemDi</td>
+                <td>@item.DiemDen</td>
+                <td>@item.KhoangCach.ToString("0.##") km</td>
+                <td>@item.ThoiGianDuKien</td>
+                <td>@String.Format("{0:N0} VND", item.GiaThamKhao)</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.MaTuyen" class="btn btn-info">Chi tiết</a>
+                    <a asp-action="Edit" asp-route-id="@item.MaTuyen" class="btn btn-warning">Sửa</a>
+                    <a asp-action="Delete" asp-route-id="@item.MaTuyen" class="btn btn-danger">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
