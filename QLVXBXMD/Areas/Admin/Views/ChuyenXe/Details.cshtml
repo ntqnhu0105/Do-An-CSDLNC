@@ -1,0 +1,40 @@
+﻿@model QLVXBXMD.Models.System.ChuyenXe
+
+@{
+    ViewData["Title"] = "Chi tiết Chuyến Xe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chi tiết Chuyến Xe</h2>
+
+<div>
+    <h4>Thông tin Chuyến Xe</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Mã Chuyến</dt>
+        <dd class="col-sm-10">@Model.MaChuyen</dd>
+
+        <dt class="col-sm-2">Tuyến Xe</dt>
+        <dd class="col-sm-10">@Model.TuyenXe?.DiemDi - @Model.TuyenXe?.DiemDen</dd>
+
+        <dt class="col-sm-2">Xe</dt>
+        <dd class="col-sm-10">@Model.Xe?.BienSoXe</dd>
+
+        <dt class="col-sm-2">Ngày Khởi Hành</dt>
+        <dd class="col-sm-10">@Model.NgayKhoiHanh.ToString("dd/MM/yyyy")</dd>
+
+        <dt class="col-sm-2">Giờ Khởi Hành</dt>
+        <dd class="col-sm-10">@Model.GioKhoiHanh</dd>
+
+        <dt class="col-sm-2">Giá</dt>
+        <dd class="col-sm-10">@String.Format("{0:N0} VND", Model.Gia)</dd>
+
+        <dt class="col-sm-2">Trạng Thái</dt>
+        <dd class="col-sm-10">@Model.TrangThai</dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.MaChuyen" class="btn btn-warning">Sửa</a>
+    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+</div>

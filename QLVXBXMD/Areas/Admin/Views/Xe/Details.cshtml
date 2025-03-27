@@ -1,0 +1,31 @@
+﻿@model QLVXBXMD.Models.System.Xe
+
+@{
+    ViewData["Title"] = "Chi tiết Xe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chi tiết Xe</h2>
+
+<div>
+    <h4>Thông tin Xe</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Mã Xe</dt>
+        <dd class="col-sm-10">@Model.MaXe</dd>
+
+        <dt class="col-sm-2">Biển Số Xe</dt>
+        <dd class="col-sm-10">@Model.BienSoXe</dd>
+
+        <dt class="col-sm-2">Loại Xe</dt>
+        <dd class="col-sm-10">@Model.LoaiXe?.TenLoai</dd>
+
+        <dt class="col-sm-2">Nhà Xe</dt>
+        <dd class="col-sm-10">@Model.NhaXe?.TenNhaXe</dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.MaXe" class="btn btn-warning">Sửa</a>
+    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+</div>

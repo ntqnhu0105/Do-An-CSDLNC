@@ -1,0 +1,65 @@
+﻿@model QLVXBXMD.Models.System.ChuyenXeDiem
+
+@{
+    ViewData["Title"] = "Thêm Chuyến Xe - Điểm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Thêm Chuyến Xe - Điểm</h2>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <p>@error.ErrorMessage</p>
+        }
+    </div>
+}
+
+<form asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label asp-for="MaChuyen">Chuyến Xe</label>
+        <select asp-for="MaChuyen" class="form-control">
+            <option value="">-- Chọn Chuyến Xe --</option>
+            @if (ViewBag.ChuyenXes != null)
+            {
+                @foreach (var cx in ViewBag.ChuyenXes)
+                {
+                    <option value="@cx.MaChuyen">@cx.Display</option>
+                }
+            }
+        </select>
+        <span asp-validation-for="MaChuyen" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MaDiem">Điểm</label>
+        <select asp-for="MaDiem" class="form-control">
+            <option value="">-- Chọn Điểm --</option>
+            @if (ViewBag.Diems != null)
+            {
+                @foreach (var d in ViewBag.Diems)
+                {
+                    <option value="@d.MaDiem">@d.TenDiem</option>
+                }
+            }
+        </select>
+        <span asp-validation-for="MaDiem" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ThoiGianDuKien">Thời Gian Dự Kiến</label>
+        <input asp-for="ThoiGianDuKien" class="form-control" type="time" step="1" />
+        <span asp-validation-for="ThoiGianDuKien" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Thêm</button>
+    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
