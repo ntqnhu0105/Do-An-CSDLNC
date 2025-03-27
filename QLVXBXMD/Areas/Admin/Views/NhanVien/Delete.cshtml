@@ -1,0 +1,47 @@
+﻿@model QLVXBXMD.Models.System.NhanVien
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Xóa Nhân viên</h2>
+
+<h3>Bạn có chắc muốn xóa nhân viên này?</h3>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">Mã NV</dt>
+        <dd class="col-sm-10">@Model.MaNV</dd>
+
+        <dt class="col-sm-2">Họ và Tên</dt>
+        <dd class="col-sm-10">@Model.HovaTen</dd>
+
+        <dt class="col-sm-2">CCCD</dt>
+        <dd class="col-sm-10">@Model.CCCD</dd>
+
+        <dt class="col-sm-2">SĐT</dt>
+        <dd class="col-sm-10">@Model.SDT</dd>
+
+        <dt class="col-sm-2">Email</dt>
+        <dd class="col-sm-10">@Model.Email</dd>
+
+        <dt class="col-sm-2">Địa chỉ</dt>
+        <dd class="col-sm-10">@Model.DiaChi</dd>
+
+        <dt class="col-sm-2">Ngày sinh</dt>
+        <dd class="col-sm-10">@Model.NgaySinh?.ToString("dd/MM/yyyy")</dd>
+
+        <dt class="col-sm-2">Nhà xe</dt>
+        <dd class="col-sm-10">@Model.NhaXe?.TenNhaXe</dd>
+
+        <dt class="col-sm-2">Chức vụ</dt>
+        <dd class="col-sm-10">@Model.ChucVu</dd>
+    </dl>
+
+    <form asp-action="Delete">
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="MaNV" />
+        <button type="submit" class="btn btn-danger">Xóa</button>
+        <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+    </form>
+</div>

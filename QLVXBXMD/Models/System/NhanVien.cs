@@ -17,7 +17,7 @@ namespace QLVXBXMD.Models.System
         public string CCCD { get; set; }
 
         [Required]
-        [StringLength(11)]
+        [StringLength(11, MinimumLength = 10, ErrorMessage = "Số điện thoại phải từ 10 đến 11 ký tự")]
         public string SDT { get; set; }
 
         [StringLength(50)]

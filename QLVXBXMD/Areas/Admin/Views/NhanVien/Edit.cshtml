@@ -1,0 +1,88 @@
+﻿@model QLVXBXMD.Models.System.NhanVien
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Chỉnh sửa Nhân viên</h2>
+
+@if (!ViewData.ModelState.IsValid)
+{
+        <div class="alert alert-danger">
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+                    <p>@error.ErrorMessage</p>
+        }
+        </div>
+}
+
+<form asp-action="Edit" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="MaNV" />
+
+    <div class="form-group">
+        <label asp-for="HovaTen"></label>
+        <input asp-for="HovaTen" class="form-control" />
+        <span asp-validation-for="HovaTen" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CCCD"></label>
+        <input asp-for="CCCD" class="form-control" />
+        <span asp-validation-for="CCCD" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SDT"></label>
+        <input asp-for="SDT" class="form-control" />
+        <span asp-validation-for="SDT" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" type="email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DiaChi"></label>
+        <input asp-for="DiaChi" class="form-control" />
+        <span asp-validation-for="DiaChi" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NgaySinh"></label>
+        <input asp-for="NgaySinh" type="date" class="form-control" />
+        <span asp-validation-for="NgaySinh" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MaNhaXe">Nhà Xe</label>
+        <select asp-for="MaNhaXe" class="form-control">
+            <option value="">-- Chọn Nhà Xe --</option>
+            @if (ViewBag.NhaXes != null)
+            {
+                @foreach (var nx in ViewBag.NhaXes)
+                {
+                    <option value="@nx.MaNhaXe">@nx.TenNhaXe</option>
+                }
+            }
+        </select>
+        <span asp-validation-for="MaNhaXe" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ChucVu"></label>
+        <input asp-for="ChucVu" class="form-control" />
+        <span asp-validation-for="ChucVu" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu</button>
+    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

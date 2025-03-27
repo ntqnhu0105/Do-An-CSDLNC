@@ -1,0 +1,40 @@
+﻿@model IEnumerable<QLVXBXMD.Models.System.NhaXe>
+
+@{
+    ViewData["Title"] = "Danh sách Nhà Xe";
+}
+
+<h2>Danh sách Nhà Xe</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Thêm Nhà Xe</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Mã Nhà Xe</th>
+            <th>Tên Nhà Xe</th>
+            <th>Địa Chỉ</th>
+            <th>Email</th>
+            <th>Số Điện Thoại</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MaNhaXe</td>
+                <td>@item.TenNhaXe</td>
+                <td>@item.DiaChi</td>
+                <td>@item.Email</td>
+                <td>@item.SDT</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.MaNhaXe" class="btn btn-warning">Sửa</a>
+                    <a asp-action="Delete" asp-route-id="@item.MaNhaXe" class="btn btn-danger">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
