@@ -1,0 +1,66 @@
+﻿@model QLVXBXMD.Models.System.Xe
+
+@{
+    ViewData["Title"] = "Chỉnh sửa Xe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chỉnh sửa Xe</h2>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <p>@error.ErrorMessage</p>
+        }
+    </div>
+}
+
+<form asp-action="Edit" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="MaXe" />
+
+    <div class="form-group">
+        <label asp-for="BienSoXe"></label>
+        <input asp-for="BienSoXe" class="form-control" />
+        <span asp-validation-for="BienSoXe" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MaLoai">Loại Xe</label>
+        <select asp-for="MaLoai" class="form-control">
+            <option value="">-- Chọn Loại Xe --</option>
+            @if (ViewBag.LoaiXes != null)
+            {
+                @foreach (var lx in ViewBag.LoaiXes)
+                {
+                    <option value="@lx.MaLoai">@lx.TenLoai</option>
+                }
+            }
+        </select>
+        <span asp-validation-for="MaLoai" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MaNhaXe">Nhà Xe</label>
+        <select asp-for="MaNhaXe" class="form-control">
+            <option value="">-- Chọn Nhà Xe --</option>
+            @if (ViewBag.NhaXes != null)
+            {
+                @foreach (var nx in ViewBag.NhaXes)
+                {
+                    <option value="@nx.MaNhaXe">@nx.TenNhaXe</option>
+                }
+            }
+        </select>
+        <span asp-validation-for="MaNhaXe" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu</button>
+    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

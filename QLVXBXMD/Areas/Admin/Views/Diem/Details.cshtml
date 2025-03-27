@@ -1,0 +1,37 @@
+﻿@model QLVXBXMD.Models.System.Diem
+
+@{
+    ViewData["Title"] = "Chi tiết Điểm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chi tiết Điểm</h2>
+
+<div>
+    <h4>Thông tin Điểm</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Mã Điểm</dt>
+        <dd class="col-sm-10">@Model.MaDiem</dd>
+
+        <dt class="col-sm-2">Tên Điểm</dt>
+        <dd class="col-sm-10">@Model.TenDiem</dd>
+
+        <dt class="col-sm-2">Địa Chỉ</dt>
+        <dd class="col-sm-10">@Model.DiaChi</dd>
+
+        <dt class="col-sm-2">Tuyến Xe</dt>
+        <dd class="col-sm-10">@Model.TuyenXe?.DiemDi - @Model.TuyenXe?.DiemDen</dd>
+
+        <dt class="col-sm-2">Loại Điểm</dt>
+        <dd class="col-sm-10">@Model.LoaiDiem</dd>
+
+        <dt class="col-sm-2">Tọa Độ GPS</dt>
+        <dd class="col-sm-10">@Model.ToaDoGPS</dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.MaDiem" class="btn btn-warning">Sửa</a>
+    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+</div>

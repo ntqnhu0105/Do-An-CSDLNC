@@ -1,0 +1,49 @@
+﻿@model QLVXBXMD.Models.System.LoaiXe
+
+@{
+    ViewData["Title"] = "Thêm Loại Xe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Thêm Loại Xe</h2>
+
+@if (!ViewData.ModelState.IsValid)
+{
+        <div class="alert alert-danger">
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+                    <p>@error.ErrorMessage</p>
+        }
+        </div>
+}
+
+<form asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label asp-for="TenLoai"></label>
+        <input asp-for="TenLoai" class="form-control" />
+        <span asp-validation-for="TenLoai" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MoTa"></label>
+        <textarea asp-for="MoTa" class="form-control"></textarea>
+        <span asp-validation-for="MoTa" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SoLuongGhe"></label>
+        <input asp-for="SoLuongGhe" class="form-control" type="number" min="1" />
+        <span asp-validation-for="SoLuongGhe" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Thêm</button>
+    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

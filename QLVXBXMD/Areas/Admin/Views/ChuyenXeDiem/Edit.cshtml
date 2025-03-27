@@ -1,0 +1,55 @@
+﻿@model QLVXBXMD.Models.System.ChuyenXeDiem
+
+@{
+    ViewData["Title"] = "Chỉnh sửa Chuyến Xe - Điểm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chỉnh sửa Chuyến Xe - Điểm</h2>
+
+@if (!ViewData.ModelState.IsValid)
+{
+        <div class="alert alert-danger">
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+                    <p>@error.ErrorMessage</p>
+        }
+        </div>
+}
+
+<form asp-action="Edit" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="MaChuyen" />
+    <input type="hidden" asp-for="MaDiem" />
+
+    <div class="form-group">
+        <label asp-for="MaChuyen">Chuyến Xe</label>
+        <select asp-for="MaChuyen" class="form-control" disabled>
+            <option value="@Model.MaChuyen" selected>@ViewBag.SelectedChuyenXeDisplay</option>
+        </select>
+        <span asp-validation-for="MaChuyen" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MaDiem">Điểm</label>
+        <select asp-for="MaDiem" class="form-control" disabled>
+            <option value="@Model.MaDiem" selected>@ViewBag.SelectedDiemDisplay</option>
+        </select>
+        <span asp-validation-for="MaDiem" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ThoiGianDuKien">Thời Gian Dự Kiến</label>
+        <input asp-for="ThoiGianDuKien" class="form-control" type="time" step="1" />
+        <span asp-validation-for="ThoiGianDuKien" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu</button>
+    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

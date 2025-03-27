@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("QLVXBXMD")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f607b5b1a2facc5bd36497d9bfc95c30f1ed5b2a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ee57acafcde67770cebc2a32526fb48a5834c192")]
 [assembly: System.Reflection.AssemblyProductAttribute("QLVXBXMD")]
 [assembly: System.Reflection.AssemblyTitleAttribute("QLVXBXMD")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

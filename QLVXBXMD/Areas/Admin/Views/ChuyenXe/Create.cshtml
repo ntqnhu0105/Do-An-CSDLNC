@@ -1,0 +1,90 @@
+﻿@model QLVXBXMD.Models.System.ChuyenXe
+
+@{
+    ViewData["Title"] = "Thêm Chuyến Xe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Thêm Chuyến Xe</h2>
+
+@if (!ViewData.ModelState.IsValid)
+{
+        <div class="alert alert-danger">
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+                    <p>@error.ErrorMessage</p>
+        }
+        </div>
+}
+
+<form asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label asp-for="MaTuyen">Tuyến Xe</label>
+        <select asp-for="MaTuyen" class="form-control">
+            <option value="">-- Chọn Tuyến Xe --</option>
+            @if (ViewBag.TuyenXes != null)
+            {
+                @foreach (var tx in ViewBag.TuyenXes)
+                {
+                            <option value="@tx.MaTuyen">@tx.Display</option>
+                }
+            }
+        </select>
+        <span asp-validation-for="MaTuyen" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MaXe">Xe</label>
+        <select asp-for="MaXe" class="form-control">
+            <option value="">-- Chọn Xe --</option>
+            @if (ViewBag.Xes != null)
+            {
+                @foreach (var x in ViewBag.Xes)
+                {
+                            <option value="@x.MaXe">@x.BienSoXe</option>
+                }
+            }
+        </select>
+        <span asp-validation-for="MaXe" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NgayKhoiHanh">Ngày Khởi Hành</label>
+        <input asp-for="NgayKhoiHanh" class="form-control" type="date" />
+        <span asp-validation-for="NgayKhoiHanh" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="GioKhoiHanh">Giờ Khởi Hành</label>
+        <input asp-for="GioKhoiHanh" class="form-control" type="time" step="1" />
+        <span asp-validation-for="GioKhoiHanh" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Gia">Giá</label>
+        <input asp-for="Gia" class="form-control" type="number" step="1000" />
+        <span asp-validation-for="Gia" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TrangThai">Trạng Thái</label>
+        <select asp-for="TrangThai" class="form-control">
+            <option value="Chưa khởi hành">Chưa khởi hành</option>
+            <option value="Đang chạy">Đang chạy</option>
+            <option value="Hoàn thành">Hoàn thành</option>
+            <option value="Hủy">Hủy</option>
+        </select>
+        <span asp-validation-for="TrangThai" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Thêm</button>
+    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<QLVXBXMD.Models.System.ChuyenXeDiem>
+
+@{
+    ViewData["Title"] = "Danh sách Chuyến Xe - Điểm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh sách Chuyến Xe - Điểm</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Thêm Chuyến Xe - Điểm</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Mã Chuyến</th>
+            <th>Mã Điểm</th>
+            <th>Tên Điểm</th>
+            <th>Thời Gian Dự Kiến</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MaChuyen</td>
+                <td>@item.MaDiem</td>
+                <td>@item.Diem?.TenDiem</td>
+                <td>@item.ThoiGianDuKien</td>
+                <td>
+                    <a asp-action="Details" asp-route-maChuyen="@item.MaChuyen" asp-route-maDiem="@item.MaDiem" class="btn btn-info">Chi tiết</a>
+                    <a asp-action="Edit" asp-route-maChuyen="@item.MaChuyen" asp-route-maDiem="@item.MaDiem" class="btn btn-warning">Sửa</a>
+                    <a asp-action="Delete" asp-route-maChuyen="@item.MaChuyen" asp-route-maDiem="@item.MaDiem" class="btn btn-danger">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
